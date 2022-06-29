@@ -6,6 +6,7 @@ export class BackendService {
             method: method,
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body),
+            maxContentLength: Infinity,
         };
 
         return fetch(`${SITE_CONFIG.ENVIRONMENT_URL}${url}`, requestOptions).then((response) =>
