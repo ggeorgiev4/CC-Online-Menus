@@ -1,0 +1,43 @@
+{
+    "restaurants": [
+        {
+            "name": "Happy",
+            "logo": "https://media-cdn.tripadvisor.com/media/photo-s/12/e2/44/f9/happy-bar-grill.jpg",
+            "slogan": "Eat Here Happy",
+            "id": 1,
+            "menu": [
+                {
+                    "categoryName": "Salads",
+                    "label": "New",
+                    "id": 1,
+                    "menuItems": [
+                        {
+                            "name": "Salata Cezar",
+                            "id": 1,
+                            "ingredients": [
+                                "luk",
+                                "domati",
+                                "chicken",
+                                "dressing"
+                            ],
+                            "allergens": [
+                                "mlqko"
+                            ],
+                            "price": 11.50,
+                            "weight": 250,
+                            "description": "Nai qkata salata bate",
+                            "pictures": [
+                                "https://natashaskitchen.com/wp-content/uploads/2019/01/Caesar-Salad-Recipe-3.jpg",
+                                "https://www.fifteenspatulas.com/wp-content/uploads/2011/10/Caesar-Salad-Fifteen-Spatulas-3.jpg",
+                                "https://assets.bonappetit.com/photos/624215f8a76f02a99b29518f/4:5/w_2240,h_2800,c_limit/0328-ceasar-salad-lede.jpg"
+                            ]
+                        }
+                    ]
+                }
+            ] 
+        }
+    ],
+    "profile":{
+       "name":"typicode"
+    }
+  }
