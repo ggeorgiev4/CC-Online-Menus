@@ -12,9 +12,11 @@
         @media (max-width: 839px) {
             min-width: 70px;
         }
+
         @media (max-width: 639px) {
             min-width: unset;
         }
+        
         .category-label {
             position: absolute;
             left: 0;

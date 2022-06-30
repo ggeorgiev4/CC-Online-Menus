@@ -27,10 +27,6 @@
         &-image {
             border-radius: 50%;
             max-width: 100px;
-
-            @media (max-width: 839px) {
-                margin-left: 100px;
-            }
         }
 
         &-name {

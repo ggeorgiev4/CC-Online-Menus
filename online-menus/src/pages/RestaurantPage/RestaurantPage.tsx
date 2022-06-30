@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Cell, Grid, Tab, Tabs } from 'react-mdl';
 import { useParams } from 'react-router-dom';
+import { MenuItemDialog } from '../../components/AppDialog/MenuItemDialog';
 import { MenuItemRow } from '../../components/MenuItemRow/MenuItemRow';
 import { GetRestaurant } from '../../helpers/database';
 import { MenuCategoryLabel } from '../../models/menu-category-label.enum';
@@ -10,17 +11,25 @@ import './styles.scss';
 
 export const RestaurantPage = () => {
     const { id } = useParams();
+
     const restaurant = GetRestaurant(Number(id));
     const [activeTab, setActiveTab] = useState<number>(0);
     const [activeMenu, setActiveMenu] = useState<MenuCategory>(restaurant.menu[0]);
-
-    const changeActiveMenu = (tabId: number) => {
-        setActiveTab(tabId);
-    };
+    const [dialogOpened, setDialogOpened] = useState<boolean>(false);
+    const [menuItem, setMenuItem] = useState<MenuItem>();
 
     useEffect(() => {
         setActiveMenu(restaurant.menu[activeTab]);
     }, [activeTab]);
+
+    const openMenuItem = (menuItem: MenuItem) => {
+        setMenuItem(menuItem);
+        setDialogOpened(true);
+    };
+
+    const changeActiveMenu = (tabId: number) => {
+        setActiveTab(tabId);
+    };
 
     return (
         <div className="restaurant-page">
@@ -54,12 +63,17 @@ export const RestaurantPage = () => {
             <section>
                 <div className="restaurant-category-menu">
                     {activeMenu.menuItems.map((menuItem: MenuItem, key) => (
-                        <Cell col={12} shadow={1} key={key}>
+                        <Cell col={12} shadow={1} key={key} onClick={() => openMenuItem(menuItem)}>
                             <MenuItemRow data={menuItem} />
                         </Cell>
                     ))}
                 </div>
             </section>
+            <MenuItemDialog
+                open={dialogOpened ? true : false}
+                menuItem={menuItem}
+                onClose={() => setDialogOpened(false)}
+            />
         </div>
     );
 };
