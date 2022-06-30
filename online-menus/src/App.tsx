@@ -1,39 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
+import React, { useContext, useState } from 'react';
 import './App.css';
-import { BackendService } from './helpers/Backend-Service';
+import { getRestaurants } from './helpers/database';
+import { Restaurant } from './models/restaurant.model';
+import { AppRoutes } from './routing/AppRoutes';
+
+interface IRestaurantsContext {
+    restaurants: Array<Restaurant>;
+}
+
+export const RestaurantsContext = React.createContext<{
+    restaurants: Array<Restaurant>;
+    setRestaurantsData: (data: IRestaurantsContext) => void;
+}>({
+    restaurants: getRestaurants(),
+    setRestaurantsData: (data: IRestaurantsContext) => {},
+});
 
 function App() {
-    const backendService = new BackendService();
-    const [menu, setMenu] = useState<Array<any>>([]);
-    useEffect(() => {
-        getMenu();
-        console.log(require('../src/helpers/db.json'));
-    }, []);
+    const [restaurantsData, setRestaurantsData] = useState<IRestaurantsContext>({
+        restaurants: useContext(RestaurantsContext).restaurants,
+    });
 
-    const getMenu = async () => {
-        await backendService.call('/restaurants', 'GET').then((data) => {
-            setMenu(data);
-        });
-    };
+    const context = { ...restaurantsData, setRestaurantsData };
 
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
+        <RestaurantsContext.Provider value={context}>
+            <div className="app">
+                <AppRoutes />
+            </div>
+        </RestaurantsContext.Provider>
     );
 }
 

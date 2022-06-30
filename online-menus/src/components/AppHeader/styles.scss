@@ -1,0 +1,30 @@
+@media screen and (max-width: 1024px) {
+    .mdl-layout__drawer-button {
+        color: #fff !important;
+    }
+
+    .mdl-layout__header-row {
+        padding-left: 52px !important;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .mdl-layout__drawer-button {
+        display: none !important;
+    }
+    
+    .mdl-layout__header-row {
+        padding-left: 32px !important;
+    }
+}
+
+.header-title {
+    font-size: 20px;
+    &:hover {
+        cursor: pointer;
+    }
+
+    &-drawer {
+        margin: 15px auto;
+    }
+}

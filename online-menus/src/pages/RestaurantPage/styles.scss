@@ -1,0 +1,41 @@
+.restaurant-page {
+    max-width: 1440px;
+    margin: 0 auto;
+
+    .restaurant-category-menu {
+        padding-top: 20px;
+    }
+
+    .category-name {
+        min-width: 100px;
+
+        @media (max-width: 839px) {
+            min-width: 70px;
+        }
+        @media (max-width: 639px) {
+            min-width: unset;
+        }
+        .category-label {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: fit-content;
+            font-size: 10px;
+            color: #fff;
+            padding: 2px 3px;
+            line-height: 10px;
+
+            &.bg-yellow {
+                background: darkgoldenrod;
+            }
+
+            &.bg-green {
+                background: green;
+            }
+
+            &.bg-red {
+                background: red;
+            }
+        }
+    }
+}
