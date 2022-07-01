@@ -6,8 +6,7 @@ import { Restaurant } from '../../models/restaurant.model';
 import { AppCarousel } from '../AppCarousel/AppCarousel';
 import './styles.scss';
 
-export const RestaurantCard = ({ data }: { data: Restaurant }) => {
-    const [restaurant, setRestaurant] = useState<Restaurant>(data);
+export const RestaurantCard = ({ restaurant }: { restaurant: Restaurant }) => {
     const navigate = useNavigate();
 
     return (

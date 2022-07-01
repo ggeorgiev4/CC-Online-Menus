@@ -12,7 +12,7 @@ export const Home = () => {
         <div className="home-wrapper">
             <Grid>
                 {restaurants.map((restaurant: Restaurant, key) => (
-                    <RestaurantCard data={restaurant} key={key} />
+                    <RestaurantCard restaurant={restaurant} key={key} />
                 ))}
             </Grid>
         </div>
