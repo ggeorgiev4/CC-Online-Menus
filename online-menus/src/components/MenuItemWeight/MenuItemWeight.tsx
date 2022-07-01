@@ -1,18 +1,14 @@
-import { useState } from 'react';
-
 export enum WeightMeasure {
     GRAMS = 'g',
     KILOGRAMS = 'kg',
 }
 export const MenuItemWeight = ({
-    data,
+    weight,
     unit = WeightMeasure.GRAMS,
 }: {
-    data: number;
+    weight: number;
     unit?: WeightMeasure;
 }) => {
-    const [weight, setWeight] = useState<number>(data);
-
     return (
         <>
             ({weight}

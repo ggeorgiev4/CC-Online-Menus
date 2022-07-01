@@ -17,13 +17,13 @@ export const MenuItemRow = ({ data }: { data: MenuItem }) => {
 
                     <Cell col={9} phone={12}>
                         <h3 className="menu-item-name">
-                            {data.name} <MenuItemWeight data={data.weight} />
+                            {data.name} <MenuItemWeight weight={data.weight} />
                         </h3>
 
-                        <Ingredients data={data.ingredients}></Ingredients>
+                        <Ingredients ingredients={data.ingredients}></Ingredients>
                     </Cell>
 
-                    <MenuItemPrice data={data.price}></MenuItemPrice>
+                    <MenuItemPrice price={data.price}></MenuItemPrice>
                 </Grid>
             </div>
         </>

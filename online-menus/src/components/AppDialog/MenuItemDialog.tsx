@@ -17,9 +17,9 @@ export const MenuItemDialog = ({
     return (
         <Dialog open={open} className="app-dialog">
             <DialogTitle>
-                {menuItem.name} <MenuItemWeight data={menuItem.weight} />
+                {menuItem.name} <MenuItemWeight weight={menuItem.weight} />
                 <span style={{ float: 'right', color: 'rgb(255,23,68)' }}>
-                    <MenuItemPrice data={menuItem.price}></MenuItemPrice>
+                    <MenuItemPrice price={menuItem.price}></MenuItemPrice>
                 </span>
             </DialogTitle>
             <DialogContent>

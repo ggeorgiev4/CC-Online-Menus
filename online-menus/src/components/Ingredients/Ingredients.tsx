@@ -1,7 +1,4 @@
-import { useState } from 'react';
-
-export const Ingredients = ({ data }: { data: Array<string> }) => {
-    const [ingredients, setIngredients] = useState<Array<string>>(data);
+export const Ingredients = ({ ingredients }: { ingredients: Array<string> }) => {
     return (
         <p className="ingredients">
             <b>Ingredients:</b> /

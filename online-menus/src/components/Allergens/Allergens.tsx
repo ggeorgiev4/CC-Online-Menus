@@ -1,8 +1,4 @@
-import { useState } from 'react';
-
-export const Allergens = ({ data }: { data: Array<string> }) => {
-    const [allergens, setAllergens] = useState<Array<string>>(data);
-
+export const Allergens = ({ allergens }: { allergens: Array<string> }) => {
     return (
         <p className="allergens mdl-color-text--red-A400">
             <b>allergens:</b> /

@@ -11,12 +11,12 @@ export const MenuItemView = ({ menuItem }: { menuItem: MenuItem }) => {
         <Grid className="menu-item-view">
             <Cell col={12}> {menuItem.description}</Cell>
             <Cell col={6} phone={12} className="flex-center">
-                <AppCarousel data={menuItem} pictureSize={400}></AppCarousel>
+                <AppCarousel pictures={menuItem.pictures} pictureSize={400}></AppCarousel>
             </Cell>
             <Cell col={6} phone={12}>
-                <Ingredients data={menuItem.ingredients}></Ingredients>
+                <Ingredients ingredients={menuItem.ingredients}></Ingredients>
                 {menuItem.allergens.length ? (
-                    <Allergens data={menuItem.allergens}></Allergens>
+                    <Allergens allergens={menuItem.allergens}></Allergens>
                 ) : (
                     <></>
                 )}

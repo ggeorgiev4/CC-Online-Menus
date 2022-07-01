@@ -1,19 +1,15 @@
 import Carousel from 'better-react-carousel';
-import { useState } from 'react';
-import { MenuItem } from '../../models/menu-item.model';
 
 export const AppCarousel = ({
-    data,
+    pictures,
     pictureSize = 200,
 }: {
-    data: MenuItem;
+    pictures: Array<string>;
     pictureSize?: number;
 }) => {
-    const [menuItem, setMenuItem] = useState<MenuItem>(data);
-
     return (
         <Carousel cols={1} rows={1} loop style={{ maxWidth: '400px' }}>
-            {menuItem.pictures.map((picture, key) => (
+            {pictures.map((picture, key) => (
                 <Carousel.Item key={key} style={{ textAlign: 'center' }}>
                     <img
                         width="100%"
