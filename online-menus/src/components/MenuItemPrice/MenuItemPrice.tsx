@@ -3,6 +3,7 @@ export enum Currency {
     USD = '$',
     BGN = 'лв.',
 }
+
 export const MenuItemPrice = ({
     price,
     currency = Currency.BGN,

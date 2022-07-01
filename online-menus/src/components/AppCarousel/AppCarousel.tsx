@@ -12,6 +12,7 @@ export const AppCarousel = ({
             {pictures.map((picture, key) => (
                 <Carousel.Item key={key} style={{ textAlign: 'center' }}>
                     <img
+                        alt=""
                         width="100%"
                         style={{ maxWidth: '400px', margin: '0 auto' }}
                         src={picture.replaceAll('200', pictureSize.toString())}

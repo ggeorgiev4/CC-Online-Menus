@@ -1,4 +1,3 @@
-import Carousel from 'better-react-carousel';
 import { Cell, Grid } from 'react-mdl';
 import { MenuItem } from '../../models/menu-item.model';
 import { Allergens } from '../Allergens/Allergens';

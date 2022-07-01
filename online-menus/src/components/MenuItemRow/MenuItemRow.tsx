@@ -1,7 +1,7 @@
 import { Cell, Grid } from 'react-mdl';
 import { MenuItem } from '../../models/menu-item.model';
 import { Ingredients } from '../Ingredients/Ingredients';
-import { Currency, MenuItemPrice } from '../MenuItemPrice/MenuItemPrice';
+import { MenuItemPrice } from '../MenuItemPrice/MenuItemPrice';
 import { MenuItemWeight } from '../MenuItemWeight/MenuItemWeight';
 import './styles.scss';
 

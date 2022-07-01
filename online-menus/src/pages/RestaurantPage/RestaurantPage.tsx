@@ -26,7 +26,7 @@ export const RestaurantPage = () => {
 
     useEffect(() => {
         setActiveMenu(restaurant.menu[activeTab]);
-    }, [activeTab]);
+    }, [activeTab, restaurant.menu]);
 
     const openMenuItem = (menuItem: MenuItem) => {
         setMenuItem(menuItem);

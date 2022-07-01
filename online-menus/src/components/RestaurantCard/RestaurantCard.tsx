@@ -1,9 +1,7 @@
-import { useState } from 'react';
 import { Card, CardTitle, CardActions, CardMenu, IconButton } from 'react-mdl';
 import { useNavigate } from 'react-router-dom';
 import { getColor } from '../../helpers/ColorGenerator';
 import { Restaurant } from '../../models/restaurant.model';
-import { AppCarousel } from '../AppCarousel/AppCarousel';
 import './styles.scss';
 
 export const RestaurantCard = ({ restaurant }: { restaurant: Restaurant }) => {
