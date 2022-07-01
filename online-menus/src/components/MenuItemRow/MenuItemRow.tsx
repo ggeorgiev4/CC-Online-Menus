@@ -1,38 +1,29 @@
 import { Cell, Grid } from 'react-mdl';
 import { MenuItem } from '../../models/menu-item.model';
+import { Ingredients } from '../Ingredients/Ingredients';
+import { Currency, MenuItemPrice } from '../MenuItemPrice/MenuItemPrice';
+import { MenuItemWeight } from '../MenuItemWeight/MenuItemWeight';
 import './styles.scss';
 
-export const MenuItemRow = (props: { data: MenuItem }) => {
-    const menuItem = props.data;
+export const MenuItemRow = ({ data }: { data: MenuItem }) => {
     return (
         <>
             <div className="menu-item-row">
-                {menuItem.allergens.length > 0 && (
-                    <span className="has-allergens">Has Allergens</span>
-                )}
+                {data.allergens.length > 0 && <span className="has-allergens">Has Allergens</span>}
                 <Grid className="menu-item">
                     <Cell col={3} phone={12} className="img-wrapper">
-                        <img className="menu-item-image" src={menuItem.pictures[0]} alt="" />
+                        <img className="menu-item-image" src={data.pictures[0]} alt="" />
                     </Cell>
 
                     <Cell col={9} phone={12}>
                         <h3 className="menu-item-name">
-                            {menuItem.name} ({menuItem.weight}g)
+                            {data.name} <MenuItemWeight data={data.weight} />
                         </h3>
 
-                        <p className="ingredients">
-                            <b>Ingredients:</b> /
-                            {menuItem.ingredients.map((ingredient: string, key) => (
-                                <span className="ingredient" key={key}>
-                                    {ingredient}
-                                    {key < menuItem.ingredients.length - 1 && ', '}
-                                </span>
-                            ))}
-                            /
-                        </p>
+                        <Ingredients data={data.ingredients}></Ingredients>
                     </Cell>
 
-                    <div className="price">${menuItem.price}</div>
+                    <MenuItemPrice data={data.price}></MenuItemPrice>
                 </Grid>
             </div>
         </>

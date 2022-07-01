@@ -17,6 +17,12 @@ export const RestaurantPage = () => {
     const [activeMenu, setActiveMenu] = useState<MenuCategory>(restaurant.menu[0]);
     const [dialogOpened, setDialogOpened] = useState<boolean>(false);
     const [menuItem, setMenuItem] = useState<MenuItem>();
+    const ColorMap = {
+        [MenuCategoryLabel.FEATURED]: 'yellow',
+        [MenuCategoryLabel.NEW]: 'green',
+        [MenuCategoryLabel.PROMO]: 'red',
+        default: 'red',
+    };
 
     useEffect(() => {
         setActiveMenu(restaurant.menu[activeTab]);
@@ -48,11 +54,7 @@ export const RestaurantPage = () => {
                         {category.categoryName}
                         <span
                             className={`category-label mdl-color--${
-                                category.label === MenuCategoryLabel.FEATURED
-                                    ? 'yellow'
-                                    : category.label === MenuCategoryLabel.NEW
-                                    ? 'green'
-                                    : 'red'
+                                ColorMap[category.label] ?? ColorMap.default
                             }-700`}
                         >
                             {category.label}
@@ -69,11 +71,13 @@ export const RestaurantPage = () => {
                     ))}
                 </div>
             </section>
-            <MenuItemDialog
-                open={dialogOpened ? true : false}
-                menuItem={menuItem}
-                onClose={() => setDialogOpened(false)}
-            />
+            {menuItem && (
+                <MenuItemDialog
+                    open={dialogOpened ? true : false}
+                    menuItem={menuItem}
+                    onClose={() => setDialogOpened(false)}
+                />
+            )}
         </div>
     );
 };

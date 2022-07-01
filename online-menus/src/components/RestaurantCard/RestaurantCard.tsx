@@ -3,10 +3,11 @@ import { Card, CardTitle, CardActions, CardMenu, IconButton } from 'react-mdl';
 import { useNavigate } from 'react-router-dom';
 import { getColor } from '../../helpers/ColorGenerator';
 import { Restaurant } from '../../models/restaurant.model';
+import { AppCarousel } from '../AppCarousel/AppCarousel';
 import './styles.scss';
 
-export const RestaurantCard = (props: { data: Restaurant }) => {
-    const [restaurant, setRestaurant] = useState<Restaurant>(props.data);
+export const RestaurantCard = ({ data }: { data: Restaurant }) => {
+    const [restaurant, setRestaurant] = useState<Restaurant>(data);
     const navigate = useNavigate();
 
     return (

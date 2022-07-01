@@ -8,7 +8,6 @@ export const getRestaurants = () => {
 };
 
 export const GetRestaurant = (id: number): Restaurant => {
-    const restaurants = useContext(RestaurantsContext).restaurants;
-    const restaurant = restaurants.find((r: Restaurant) => r.id === id);
-    return restaurant!;
+    const { restaurants } = useContext(RestaurantsContext);
+    return restaurants.find((r: Restaurant) => r.id === id)!;
 };

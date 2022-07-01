@@ -16,7 +16,7 @@
         @media (max-width: 639px) {
             min-width: unset;
         }
-        
+
         .category-label {
             position: absolute;
             left: 0;
@@ -26,18 +26,6 @@
             color: #fff;
             padding: 2px 3px;
             line-height: 10px;
-
-            &.bg-yellow {
-                background: darkgoldenrod;
-            }
-
-            &.bg-green {
-                background: green;
-            }
-
-            &.bg-red {
-                background: red;
-            }
         }
     }
 }
