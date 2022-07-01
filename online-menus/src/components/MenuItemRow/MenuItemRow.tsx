@@ -20,10 +20,10 @@ export const MenuItemRow = ({ data }: { data: MenuItem }) => {
                             {data.name} <MenuItemWeight weight={data.weight} />
                         </h3>
 
-                        <Ingredients ingredients={data.ingredients}></Ingredients>
+                        <Ingredients ingredients={data.ingredients} />
                     </Cell>
 
-                    <MenuItemPrice price={data.price}></MenuItemPrice>
+                    <MenuItemPrice price={data.price} />
                 </Grid>
             </div>
         </>

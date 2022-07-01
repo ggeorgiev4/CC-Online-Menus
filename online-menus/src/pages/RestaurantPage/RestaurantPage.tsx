@@ -36,6 +36,7 @@ export const RestaurantPage = () => {
         } else {
             navigate('/404');
         }
+        // eslint-disable-next-line
     }, [activeTab, restaurant?.menu]);
 
     const openMenuItem = (menuItem: MenuItem) => {
