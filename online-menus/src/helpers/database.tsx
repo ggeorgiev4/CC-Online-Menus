@@ -7,7 +7,7 @@ export const getRestaurants = () => {
     return data.restaurants;
 };
 
-export const GetRestaurant = (id: number): Restaurant => {
+export const GetRestaurant = (id: number): Restaurant | undefined => {
     const { restaurants } = useContext(RestaurantsContext);
-    return restaurants.find((r: Restaurant) => r.id === id)!;
+    return restaurants.find((r: Restaurant) => r.id === id);
 };

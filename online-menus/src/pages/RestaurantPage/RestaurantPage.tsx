@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Cell, Grid, Tab, Tabs } from 'react-mdl';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { MenuItemDialog } from '../../components/AppDialog/MenuItemDialog';
 import { MenuItemRow } from '../../components/MenuItemRow/MenuItemRow';
 import { GetRestaurant } from '../../helpers/database';
@@ -14,7 +14,13 @@ export const RestaurantPage = () => {
 
     const restaurant = GetRestaurant(Number(id));
     const [activeTab, setActiveTab] = useState<number>(0);
-    const [activeMenu, setActiveMenu] = useState<MenuCategory>(restaurant.menu[0]);
+
+    const navigate = useNavigate();
+    const menus = restaurant?.menu ?? [];
+    const [menu] = menus ?? [];
+
+    const [activeMenu, setActiveMenu] = useState<MenuCategory>(menu);
+
     const [dialogOpened, setDialogOpened] = useState<boolean>(false);
     const [menuItem, setMenuItem] = useState<MenuItem>();
     const ColorMap = {
@@ -25,8 +31,12 @@ export const RestaurantPage = () => {
     };
 
     useEffect(() => {
-        setActiveMenu(restaurant.menu[activeTab]);
-    }, [activeTab, restaurant.menu]);
+        if (restaurant) {
+            setActiveMenu(restaurant.menu[activeTab]);
+        } else {
+            navigate('/404');
+        }
+    }, [activeTab, restaurant?.menu]);
 
     const openMenuItem = (menuItem: MenuItem) => {
         setMenuItem(menuItem);
@@ -38,46 +48,59 @@ export const RestaurantPage = () => {
     };
 
     return (
-        <div className="restaurant-page">
-            <Grid>
-                <Cell col={3} phone={12}>
-                    <img src={restaurant.logo} alt="" style={{ float: 'right' }} />
-                </Cell>
-                <Cell col={9} phone={12}>
-                    <h1>{restaurant.name}</h1>
-                    <h4>{restaurant.slogan}</h4>
-                </Cell>
-            </Grid>
-            <Tabs activeTab={activeTab} onChange={(tabId) => changeActiveMenu(tabId)} ripple>
-                {restaurant.menu.map((category: MenuCategory, key) => (
-                    <Tab className="category-name" key={key}>
-                        {category.categoryName}
-                        <span
-                            className={`category-label mdl-color--${
-                                ColorMap[category.label] ?? ColorMap.default
-                            }-700`}
-                        >
-                            {category.label}
-                        </span>
-                    </Tab>
-                ))}
-            </Tabs>
-            <section>
-                <div className="restaurant-category-menu">
-                    {activeMenu.menuItems.map((menuItem: MenuItem, key) => (
-                        <Cell col={12} shadow={1} key={key} onClick={() => openMenuItem(menuItem)}>
-                            <MenuItemRow data={menuItem} />
+        <>
+            {restaurant && (
+                <div className="restaurant-page">
+                    <Grid>
+                        <Cell col={3} phone={12}>
+                            <img src={restaurant.logo} alt="" style={{ float: 'right' }} />
                         </Cell>
-                    ))}
+                        <Cell col={9} phone={12}>
+                            <h1>{restaurant.name}</h1>
+                            <h4>{restaurant.slogan}</h4>
+                        </Cell>
+                    </Grid>
+                    <Tabs
+                        activeTab={activeTab}
+                        onChange={(tabId) => changeActiveMenu(tabId)}
+                        ripple
+                    >
+                        {restaurant.menu.map((category: MenuCategory, key) => (
+                            <Tab className="category-name" key={key}>
+                                {category.categoryName}
+                                <span
+                                    className={`category-label mdl-color--${
+                                        ColorMap[category.label] ?? ColorMap.default
+                                    }-700`}
+                                >
+                                    {category.label}
+                                </span>
+                            </Tab>
+                        ))}
+                    </Tabs>
+                    <section>
+                        <div className="restaurant-category-menu">
+                            {activeMenu.menuItems.map((menuItem: MenuItem, key) => (
+                                <Cell
+                                    col={12}
+                                    shadow={1}
+                                    key={key}
+                                    onClick={() => openMenuItem(menuItem)}
+                                >
+                                    <MenuItemRow data={menuItem} />
+                                </Cell>
+                            ))}
+                        </div>
+                    </section>
+                    {menuItem && (
+                        <MenuItemDialog
+                            open={dialogOpened ? true : false}
+                            menuItem={menuItem}
+                            onClose={() => setDialogOpened(false)}
+                        />
+                    )}
                 </div>
-            </section>
-            {menuItem && (
-                <MenuItemDialog
-                    open={dialogOpened ? true : false}
-                    menuItem={menuItem}
-                    onClose={() => setDialogOpened(false)}
-                />
             )}
-        </div>
+        </>
     );
 };
